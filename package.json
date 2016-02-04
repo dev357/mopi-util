@@ -12,5 +12,8 @@
     "url": "https://github.com/dev357/mopi-util.git"
   },
   "author": "Risto",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mopiapi": "~1"
+  }
 }
