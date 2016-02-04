@@ -14,6 +14,6 @@
   "author": "Risto",
   "license": "ISC",
   "dependencies": {
-    "mopiapi": "~1"
+    "i2c": "https://github.com/polaris/node-i2c"
   }
 }
