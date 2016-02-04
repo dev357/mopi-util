@@ -1,17 +1,19 @@
 'use strict'
 
+// CONFIG - edit these ########################################################################
+const battery = 1; // which port on the MoPi is the backup battery connected to
+const mainPower = 2; // which port on the MoPi is the main power connected to
+const timer = 11; // how long should we wait before deciding the main power is gone for good
+const mainLowVoltage = 10; // when the main battery drops below this, start timer
+const pollingInterval = 2; // how often should we check if voltage has dropped, in s
+const shutdownDelay = 35; // how long to wait until power is cut, in seconds(min 30s)
+// ############################################################################################
+
+// DO NOT EDIT BEYOND THIS POINT
 const mopiapi = require('./mopiapi');
 const exec = require('child_process').exec;
 
 const mopi = new mopiapi.mopiapi();
-
-// CONFIG
-const battery = 1; // which port on the MoPi is the backup battery connected to
-const mainPower = 2; // which port on the MoPi is the main power connected to
-const timer = 11; // how long should we wait before deciding the main power is gone
-const mainLowVoltage = 10; // when the main battery drops below this, start timer
-const pollingInterval = 2; // how often should we check if voltage has dropped, in s
-const shutdownDelay = 35; // how long to wait until power is cut, in seconds(min 30s)
 
 mopi.connect(function(err) {
   if (err) return console.log(err);
@@ -32,6 +34,7 @@ mopi.connect(function(err) {
 
   const timerCounter = Math.ceil(timer / pollingInterval);
   let shutdownCounter = 0;
+
   function shouldShutdown() {
     isMainVoltageGood().then(value => {
       if (value === false) {
@@ -73,7 +76,4 @@ mopi.connect(function(err) {
   }
 
   let shutdownInterval = setInterval(shouldShutdown, pollingInterval * 1000);
-
-  doShutdown();
-
 });
