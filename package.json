@@ -15,5 +15,22 @@
   "license": "ISC",
   "dependencies": {
     "i2c": "https://github.com/polaris/node-i2c"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-defaults": "^8.0.2",
+    "eslint-plugin-filenames": "^0.2.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "extends": [
+      "defaults"
+    ],
+    "rules": {
+      "no-console": 0
+    }
   }
 }
