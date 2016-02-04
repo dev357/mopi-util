@@ -4,7 +4,7 @@
   "description": "Shut down RPi when main power is disconnected from MoPi",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "sudo node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
